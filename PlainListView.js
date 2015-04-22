@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var FooterLogoView = require('./FooterLogoView');
 
 var {
     StyleSheet,
@@ -9,8 +10,16 @@ var {
     View,
     TouchableHighlight,
     Component,
-    ListView
+    ListView,
+    WebView
 } = React;
+
+PlainListView.propTypes = {
+    data: React.PropTypes.array.isRequired,
+    displayData: React.PropTypes.array.isRequired,
+    rowPressed: React.PropTypes.func.isRequired,
+    footerPressed: React.PropTypes.func.isRequired
+};
 
 class PlainListView extends Component {
     constructor(props) {
@@ -22,6 +31,7 @@ class PlainListView extends Component {
             };
 
         this._renderRow = this._renderRow.bind(this);
+        this._renderFooter = this._renderFooter.bind(this);
     }
 
     _renderRow(rowData, sectionID, rowID) {
@@ -44,12 +54,21 @@ class PlainListView extends Component {
         );
     }
 
+    _renderFooter() {
+        return (
+            /* jshint ignore:start */
+            <FooterLogoView onPress={() => this.props.footerPressed()}/>
+            /* jshint ignore:end */
+        );
+    }
+
     render() {
         return (
             /* jshint ignore:start */
             <ListView
                 dataSource={this.state.dataSource}
-                renderRow={this._renderRow}/>
+                renderRow={this._renderRow}
+                renderFooter={this._renderFooter}/>
             /* jshint ignore:end */
         );
     }

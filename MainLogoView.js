@@ -8,11 +8,11 @@ var {
     StyleSheet
 } = React;
 
-class MainLogoView extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+MainLogoView.propTypes = {
+    onPress: React.PropTypes.func.isRequired
+};
 
+class MainLogoView extends React.Component {
     render() {
         return(
             /* jshint ignore:start */

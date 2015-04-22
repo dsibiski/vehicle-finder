@@ -3,10 +3,18 @@
 'use strict';
 
 var React = require('react-native');
+var {
+    WebView
+} = React;
+
 var VehicleModelsList = require('./VehicleModelsList');
 var PlainListView = require('./PlainListView');
 
 var VehicleMakesList = React.createClass({
+    propTypes: {
+        year: React.PropTypes.string.isRequired,
+        data: React.PropTypes.array.isRequired
+    },
 
     _rowPressed: function(props, rowData) {
         this.props.navigator.push({
@@ -15,7 +23,8 @@ var VehicleMakesList = React.createClass({
             passProps: {
                 year: this.props.year,
                 make: rowData.niceName,
-                data: rowData.models
+                data: rowData.models,
+                footerPressed: this.props.footerPressed
             }
         });
     },
@@ -27,6 +36,7 @@ var VehicleMakesList = React.createClass({
                 data={this.props.data}
                 displayData={this.props.data.map((item) => item.name)}
                 rowPressed={this._rowPressed}
+                footerPressed={this.props.footerPressed}
             />
             /* jshint ignore:end */
         );

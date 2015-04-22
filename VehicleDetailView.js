@@ -7,8 +7,16 @@ var {
     Text
 } = React;
 
-var VehicleDetailView = React.createClass({
-    render: function() {
+VehicleDetailView.propTypes = {
+    vehicle: React.PropTypes.object.isRequired
+};
+
+class VehicleDetailView extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
         var vehicle = this.props.vehicle;
         console.log(vehicle);
 
@@ -19,7 +27,7 @@ var VehicleDetailView = React.createClass({
             /* jshint ignore:end */
         );
     }
-});
+}
 
 var styles = StyleSheet.create({
 });

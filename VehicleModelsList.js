@@ -21,6 +21,12 @@ function urlForQuery(year, make, model) {
             querystring;
 }
 
+VehicleModelsList.propTypes = {
+    year: React.PropTypes.string.isRequired,
+    make: React.PropTypes.string.isRequired,
+    data: React.PropTypes.arrayOf(React.PropTypes.object.isRequired).isRequired
+};
+
 class VehicleModelsList extends React.Component {
     constructor(props) {
         super(props);
@@ -55,7 +61,8 @@ class VehicleModelsList extends React.Component {
             title: `${response.name} Styles`,
             component: VehicleStylesList,
             passProps: {
-                data: response.years[0].styles
+                data: response.years[0].styles,
+                footerPressed: this.props.footerPressed
             }
         });
     }
@@ -67,6 +74,7 @@ class VehicleModelsList extends React.Component {
                 data={this.props.data}
                 displayData={this.props.data.map((item) => item.name)}
                 rowPressed={this._rowPressed}
+                footerPressed={this.props.footerPressed}
             />
             /* jshint ignore:end */
         );

@@ -3,6 +3,7 @@
 var React = require('react-native');
 var VehicleMakesList = require('./VehicleMakesList');
 var MainLogoView = require('./MainLogoView');
+var FooterLogoView = require('./FooterLogoView');
 
 var {
     StyleSheet,
@@ -53,16 +54,16 @@ class SearchPage extends React.Component {
             isLoading: false,
             message: ''
         };
-        this.onYearTextChanged = this.onYearTextChanged.bind(this);
-        this.onViewMakesPressed = this.onViewMakesPressed.bind(this);
+        this._onYearTextChanged = this._onYearTextChanged.bind(this);
+        this._onViewMakesPressed = this._onViewMakesPressed.bind(this);
         this._handleLogoPress = this._handleLogoPress.bind(this);
     }
 
-    onYearTextChanged(vehicleYear) {
+    _onYearTextChanged(vehicleYear) {
         this.setState({ vehicleYear });
     }
 
-    onViewMakesPressed() {
+    _onViewMakesPressed() {
         var query = makeUrlForQuery('year', this.state.vehicleYear);
         this._executeQuery(query);
     }
@@ -88,7 +89,8 @@ class SearchPage extends React.Component {
             component: VehicleMakesList,
             passProps: {
                 year: this.state.vehicleYear,
-                data: response.makes
+                data: response.makes,
+                footerPressed: this._handleLogoPress
             }
         });
     }
@@ -98,8 +100,7 @@ class SearchPage extends React.Component {
             title: 'Edmunds.com',
             component: WebView,
             passProps: {
-                url: 'http://edmunds.com',
-                style: styles.webView,
+                url: 'http://www.edmunds.com/?id=apis',
                 startInLoadingState: true
             }
         });
@@ -116,7 +117,7 @@ class SearchPage extends React.Component {
                 <Text style={styles.description}>Please choose a year:</Text>
                 <PickerIOS style={styles.picker}
                     selectedValue={this.state.vehicleYear}
-                    onValueChange={this.onYearTextChanged}>
+                    onValueChange={this._onYearTextChanged}>
                     {generateYears().map(
                         year => <PickerItemIOS
                             key={year}
@@ -126,9 +127,9 @@ class SearchPage extends React.Component {
                     )}
                 </PickerIOS>
                 <TouchableHighlight style={styles.button}
-                    onPress={this.onViewMakesPressed}
+                    onPress={this._onViewMakesPressed}
                     underlayColor='#99d9f4'>
-                    <Text style={styles.buttonText}>View Makes</Text>
+                    <Text style={styles.buttonText}>Start Search</Text>
                 </TouchableHighlight>
                 <View style={styles.infoArea}>
                     <ActivityIndicatorIOS
@@ -137,6 +138,9 @@ class SearchPage extends React.Component {
                     />
                     <Text style={styles.description}>{this.state.message}</Text>
                 </View>
+                <FooterLogoView
+                    position='absolute'
+                    onPress={this._handleLogoPress}/>
             </View>
             /* jshint ignore:end */
         );
@@ -158,6 +162,7 @@ var styles = StyleSheet.create({
         color: '#656565'
     },
     container: {
+        flex: 1,
         padding: 30,
         marginTop: 65,
         alignItems: 'center'
@@ -169,7 +174,6 @@ var styles = StyleSheet.create({
     },
     button: {
         height: 36,
-        flex: 1,
         flexDirection: 'row',
         backgroundColor: '#48BBEC',
         borderColor: '#48BBEC',
@@ -185,19 +189,15 @@ var styles = StyleSheet.create({
         marginBottom: 25
     },
     infoArea: {
-        marginTop: 20,
+        marginTop: 5,
         alignItems: 'center'
     },
     picker: {
-        flex: 1,
         marginBottom: 20,
         borderWidth: 1,
         borderColor: '#48BBEC',
         borderRadius: 4,
         alignSelf: 'stretch'
-    },
-    webView: {
-        flex: 1
     }
 });
 

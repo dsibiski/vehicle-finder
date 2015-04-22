@@ -21,6 +21,10 @@ function urlForQuery(styleID) {
             querystring;
 }
 
+VehicleStylesList.propTypes = {
+    data: React.PropTypes.array.isRequired
+};
+
 class VehicleStylesList extends React.Component {
     constructor(props) {
         super(props);
@@ -50,7 +54,8 @@ class VehicleStylesList extends React.Component {
             title: `${response.make.name} ${response.model.name}`,
             component: VehicleDetailView,
             passProps: {
-                vehicle: response
+                vehicle: response,
+                footerPressed: this.props.footerPressed
             }
         });
     }
@@ -62,6 +67,7 @@ class VehicleStylesList extends React.Component {
                 data={this.props.data}
                 displayData={this.props.data.map((item) => item.name)}
                 rowPressed={this._rowPressed}
+                footerPressed={this.props.footerPressed}
             />
             /* jshint ignore:end */
         );

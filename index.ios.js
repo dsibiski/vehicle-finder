@@ -15,6 +15,7 @@ class VehicleFinderApp extends React.Component {
             /* jshint ignore:start */
             <React.NavigatorIOS
                 style={styles.container}
+                tintColor='#48BBEC'
                 initialRoute={{
                     title: 'Edmunds API Vehicle Finder',
                     component: SearchPage
