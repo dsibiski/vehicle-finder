@@ -8,7 +8,7 @@ var {
 } = React;
 
 var VehicleModelsList = require('./VehicleModelsList');
-var PlainListView = require('./PlainListView');
+var PlainListView = require('./Helpers/PlainListView');
 
 var VehicleMakesList = React.createClass({
     propTypes: {

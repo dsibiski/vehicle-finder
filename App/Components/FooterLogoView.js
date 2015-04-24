@@ -20,8 +20,6 @@ FooterLogoView.defaultProps = {
     position: 'relative'
 };
 
-var position;
-
 class FooterLogoView extends React.Component {
     render() {
         var containerStyle = {

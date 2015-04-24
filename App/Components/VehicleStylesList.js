@@ -3,7 +3,7 @@
 'use strict';
 
 var React = require('react-native');
-var PlainListView = require('./PlainListView');
+var PlainListView = require('./Helpers/PlainListView');
 var VehicleDetailView = require('./VehicleDetailView');
 
 function urlForQuery(styleID) {

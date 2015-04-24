@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var FooterLogoView = require('./FooterLogoView');
+var FooterLogoView = require('../FooterLogoView');
 
 var {
     StyleSheet,
@@ -68,7 +68,9 @@ class PlainListView extends Component {
             <ListView
                 dataSource={this.state.dataSource}
                 renderRow={this._renderRow}
-                renderFooter={this._renderFooter}/>
+                renderFooter={this._renderFooter}
+                initialListSize={20}
+            />
             /* jshint ignore:end */
         );
     }

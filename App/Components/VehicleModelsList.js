@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react-native');
-var PlainListView = require('./PlainListView');
+var PlainListView = require('./Helpers/PlainListView');
 var VehicleStylesList = require('./VehicleStylesList');
 
 function urlForQuery(year, make, model) {
