@@ -14,13 +14,6 @@ var {
     WebView
 } = React;
 
-PlainListView.propTypes = {
-    data: React.PropTypes.array.isRequired,
-    displayData: React.PropTypes.array.isRequired,
-    rowPressed: React.PropTypes.func.isRequired,
-    footerPressed: React.PropTypes.func.isRequired
-};
-
 class PlainListView extends Component {
     constructor(props) {
         super(props);
@@ -75,6 +68,13 @@ class PlainListView extends Component {
         );
     }
 }
+
+PlainListView.propTypes = {
+    data: React.PropTypes.array.isRequired,
+    displayData: React.PropTypes.array.isRequired,
+    rowPressed: React.PropTypes.func.isRequired,
+    footerPressed: React.PropTypes.func.isRequired
+};
 
 var styles = StyleSheet.create({
     separator: {

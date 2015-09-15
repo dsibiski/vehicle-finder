@@ -11,15 +11,6 @@ var {
     StyleSheet
 } = React;
 
-FooterLogoView.propTypes = {
-    onPress: React.PropTypes.func.isRequired,
-    position: React.PropTypes.string
-};
-
-FooterLogoView.defaultProps = {
-    position: 'relative'
-};
-
 class FooterLogoView extends React.Component {
     render() {
         var containerStyle = {
@@ -45,6 +36,15 @@ class FooterLogoView extends React.Component {
         );
     }
 }
+
+FooterLogoView.propTypes = {
+    onPress: React.PropTypes.func.isRequired,
+    position: React.PropTypes.string
+};
+
+FooterLogoView.defaultProps = {
+    position: 'relative'
+};
 
 var styles = StyleSheet.create({
     footerImage: {

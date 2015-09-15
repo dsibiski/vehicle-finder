@@ -7,10 +7,6 @@ var {
     Text
 } = React;
 
-VehicleDetailView.propTypes = {
-    vehicle: React.PropTypes.object.isRequired
-};
-
 class VehicleDetailView extends React.Component {
     constructor(props) {
         super(props);
@@ -22,12 +18,17 @@ class VehicleDetailView extends React.Component {
 
         return (
             /* jshint ignore:start */
-            <View>
-            </View>
+            <Text>
+                {this.props.vehicle}
+            </Text>
             /* jshint ignore:end */
         );
     }
 }
+
+VehicleDetailView.propTypes = {
+    vehicle: React.PropTypes.object.isRequired
+};
 
 var styles = StyleSheet.create({
 });

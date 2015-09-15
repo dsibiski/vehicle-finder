@@ -14,7 +14,7 @@ var {
     Image,
     PickerIOS,
     ActivityIndicatorIOS,
-    WebView
+    WebView,
 } = React;
 
 var PickerItemIOS = PickerIOS.Item;

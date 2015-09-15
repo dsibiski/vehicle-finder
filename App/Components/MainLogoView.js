@@ -8,10 +8,6 @@ var {
     StyleSheet
 } = React;
 
-MainLogoView.propTypes = {
-    onPress: React.PropTypes.func.isRequired
-};
-
 class MainLogoView extends React.Component {
     render() {
         return(
@@ -23,6 +19,10 @@ class MainLogoView extends React.Component {
         );
     }
 }
+
+MainLogoView.propTypes = {
+    onPress: React.PropTypes.func.isRequired
+};
 
 var styles = StyleSheet.create({
     image: {

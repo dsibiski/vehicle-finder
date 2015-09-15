@@ -21,10 +21,6 @@ function urlForQuery(styleID) {
             querystring;
 }
 
-VehicleStylesList.propTypes = {
-    data: React.PropTypes.array.isRequired
-};
-
 class VehicleStylesList extends React.Component {
     constructor(props) {
         super(props);
@@ -73,5 +69,9 @@ class VehicleStylesList extends React.Component {
         );
     }
 }
+
+VehicleStylesList.propTypes = {
+    data: React.PropTypes.array.isRequired
+};
 
 module.exports = VehicleStylesList;

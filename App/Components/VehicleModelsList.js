@@ -21,12 +21,6 @@ function urlForQuery(year, make, model) {
             querystring;
 }
 
-VehicleModelsList.propTypes = {
-    year: React.PropTypes.string.isRequired,
-    make: React.PropTypes.string.isRequired,
-    data: React.PropTypes.arrayOf(React.PropTypes.object.isRequired).isRequired
-};
-
 class VehicleModelsList extends React.Component {
     constructor(props) {
         super(props);
@@ -80,5 +74,11 @@ class VehicleModelsList extends React.Component {
         );
     }
 }
+
+VehicleModelsList.propTypes = {
+    year: React.PropTypes.string.isRequired,
+    make: React.PropTypes.string.isRequired,
+    data: React.PropTypes.arrayOf(React.PropTypes.object.isRequired).isRequired
+};
 
 module.exports = VehicleModelsList;
