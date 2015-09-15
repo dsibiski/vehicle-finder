@@ -4,6 +4,7 @@ var React = require('react-native');
 var VehicleMakesList = require('./VehicleMakesList');
 var MainLogoView = require('./MainLogoView');
 var FooterLogoView = require('./FooterLogoView');
+var Spinner = require('./Helpers/Spinner');
 
 var {
     StyleSheet,
@@ -14,7 +15,9 @@ var {
     Image,
     PickerIOS,
     ActivityIndicatorIOS,
+    ProgressBarAndroid,
     WebView,
+    Platform,
 } = React;
 
 var PickerItemIOS = PickerIOS.Item;
@@ -106,15 +109,9 @@ class SearchPage extends React.Component {
         });
     }
 
-    render() {
-        return (
-            /* jshint ignore:start */
-            <View style={styles.container}>
-                <MainLogoView onPress={this._handleLogoPress}/>
-                <Text style={styles.header}>
-                    Edmunds API Vehicle Explorer
-                </Text>
-                <Text style={styles.description}>Please choose a year:</Text>
+    _renderPicker() {
+        if (Platform.OS === 'ios') {
+            return (
                 <PickerIOS style={styles.picker}
                     selectedValue={this.state.vehicleYear}
                     onValueChange={this._onYearTextChanged}>
@@ -126,21 +123,35 @@ class SearchPage extends React.Component {
                         />
                     )}
                 </PickerIOS>
+            );
+        } else {
+            return (
+                <View style={[styles.picker, {height: 200}]}>
+                    <Text>Android Picker Coming Soon!</Text>
+                </View>
+            );
+        }
+    }
+
+    render() {
+        return (
+            /* jshint ignore:start */
+            <View style={styles.container}>
+                <MainLogoView onPress={this._handleLogoPress}/>
+                <Text style={styles.header}>
+                    Edmunds API Vehicle Explorer
+                </Text>
+                <Text style={styles.description}>Please choose a year:</Text>
+                {this._renderPicker()}
                 <TouchableHighlight style={styles.button}
                     onPress={this._onViewMakesPressed}
                     underlayColor='#99d9f4'>
                     <Text style={styles.buttonText}>Start Search</Text>
                 </TouchableHighlight>
                 <View style={styles.infoArea}>
-                    <ActivityIndicatorIOS
-                        animating={this.state.isLoading}
-                        size='large'
-                    />
+                    <Spinner isLoading={this.state.isLoading} />
                     <Text style={styles.description}>{this.state.message}</Text>
                 </View>
-                <FooterLogoView
-                    position='absolute'
-                    onPress={this._handleLogoPress}/>
             </View>
             /* jshint ignore:end */
         );
@@ -164,7 +175,6 @@ var styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 30,
-        marginTop: 65,
         alignItems: 'center'
     },
     buttonText: {
